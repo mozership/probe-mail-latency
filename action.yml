@@ -1,0 +1,12 @@
+name: mail-latency
+description: Measure mail delivery latency from a Maildir
+guard: [allow-host]
+params: [mail_dir, output_dir]
+runs:
+  using: binary
+  url: https://github.com/mozership/probe-mail-latency/releases/download/v0.1.0/probe-mail-latency_{os}_{arch}
+  checksums:
+    darwin_amd64: "efd0d6bf9a616906dec6d09dd518cb03e39667f91e5876cea4175d685194b395"
+    darwin_arm64: "2d7219cdf57624ac4e5bc804a60b08fdb05fc230bf7941ef6ae511d009a90def"
+    linux_amd64: "59dd9004b4a51ff032fa2eb4d1cd9928322dde4d57d143062d6ebd62220b20c3"
+    linux_arm64: "796dd47268d8748b6c18110f9b70a192f45080502ea314a2262d3aa68619c6ec"
