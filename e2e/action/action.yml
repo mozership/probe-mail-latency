@@ -1,0 +1,12 @@
+# probe-mail-latency built from this checkout, for e2e/workflow.yml. Probe
+# resolves an action before the first job starts, so the executable is built
+# before probe runs:
+#
+#   go build -o e2e/action/probe-mail-latency . && ./probe e2e/workflow.yml
+name: mail-latency
+description: Measure mail delivery latency from a Maildir
+guard: [allow-host]
+params: [mail_dir, output_dir]
+runs:
+  using: binary
+  path: probe-mail-latency

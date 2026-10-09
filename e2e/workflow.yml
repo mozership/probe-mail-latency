@@ -1,0 +1,30 @@
+# The end-to-end test: the action built from this checkout run through Probe
+# against the Maildir in maillatency/testdata, under --allow-host, which the
+# action keeps to as it connects to no host; the shell step that reads the CSV
+# is let run with --allow-action. Run it from the repository root,
+# with the action built and a probe at ./probe:
+#
+#   go build -o e2e/action/probe-mail-latency . && ./probe --allow-host localhost --allow-action shell e2e/workflow.yml
+name: probe-mail-latency e2e
+
+vars:
+  output_dir: "{{ RUNNER_TEMP ?? TMPDIR ?? '/tmp' }}"
+
+jobs:
+- name: Mail latency
+  steps:
+  - name: Measure the delivery latency of the test Maildir
+    uses: ./action
+    with:
+      mail_dir: maillatency/testdata/mail
+      output_dir: "{{vars.output_dir}}"
+    test: res.status == 0 && res.output_file endsWith ".csv"
+    outputs:
+      csv: res.output_file
+
+  - name: The CSV holds a row for each message
+    uses: shell
+    with:
+      cmd: "head -1 '{{outputs.csv}}' && tail -n +2 '{{outputs.csv}}' | wc -l"
+    test: res.code == 0 && res.stdout contains "End-to-End Latency (sec)"
+    echo: "{{res.stdout}}"
