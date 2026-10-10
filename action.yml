@@ -1,3 +1,5 @@
+# It declares allow-host, as the action connects to no host, and not
+# read-only, as it writes its CSV into output_dir.
 name: mail-latency
 description: Measure mail delivery latency from a Maildir
 guard: [allow-host]
