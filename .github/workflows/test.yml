@@ -39,5 +39,5 @@ jobs:
           ./probe --version
         env:
           GH_TOKEN: ${{ github.token }}
-          PROBE_VERSION: v1.21.0
+          PROBE_VERSION: v1.25.0
       - run: ./probe --allow-host localhost --allow-action shell e2e/workflow.yml

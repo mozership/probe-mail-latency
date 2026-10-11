@@ -4,19 +4,28 @@ A [Probe](https://github.com/mozership/probe) action that reads messages from a 
 
 It was the built-in `mail-latency` action of Probe up to v1.21.0. Probe downloads it the first time a workflow uses it, and it needs Probe v1.21.0 or later, which reads the guard and the params its `action.yml` declares.
 
-Probe only takes a full 40-character commit SHA in `uses`. The notes of each [release](https://github.com/mozership/probe-mail-latency/releases) start with the `uses` line to copy.
 ## Basic Syntax
 
 The action reads the messages in a directory and writes the measurements as a CSV file.
 
 ```yaml
-- name: Measure delivery latency
-  uses: github.com/mozership/probe-mail-latency@<commit SHA>
-  with:
-    mail_dir: "/var/mail/probe/new"
-    output_dir: "./reports"
-  test: res.status == 0
+name: Delivery latency
+actions:
+  mail-latency: github.com/mozership/probe-mail-latency@<commit SHA>
+jobs:
+- name: latency
+  steps:
+  - name: Measure delivery latency
+    uses: mail-latency
+    with:
+      mail_dir: "/var/mail/probe/new"
+      output_dir: "./reports"
+    test: res.status == 0
 ```
+
+The workflow gives the action a name once, under `actions`, and its steps use the name. Probe only takes a full 40-character commit SHA there. The notes of each [release](https://github.com/mozership/probe-mail-latency/releases) start with the action and its commit to copy.
+
+`actions` needs Probe v1.24.0 or later. With an earlier one, write the action in full in each `uses`, as `uses: github.com/mozership/probe-mail-latency@<commit SHA>`.
 
 ## Parameters
 
