@@ -7,6 +7,9 @@
 #   go build -o e2e/action/probe-mail-latency . && ./probe --allow-host localhost --allow-action shell e2e/workflow.yml
 name: probe-mail-latency e2e
 
+actions:
+  mail-latency: ./action
+
 vars:
   output_dir: "{{ RUNNER_TEMP ?? TMPDIR ?? '/tmp' }}"
 
@@ -14,7 +17,7 @@ jobs:
 - name: Mail latency
   steps:
   - name: Measure the delivery latency of the test Maildir
-    uses: ./action
+    uses: mail-latency
     with:
       mail_dir: maillatency/testdata/mail
       output_dir: "{{vars.output_dir}}"
