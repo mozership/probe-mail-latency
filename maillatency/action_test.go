@@ -6,7 +6,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/linyows/probe/actionref"
+	"github.com/mozership/probe/actionref"
 )
 
 func TestWriteNewFile(t *testing.T) {
