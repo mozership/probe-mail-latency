@@ -6,7 +6,7 @@ package main
 import maillatency "github.com/mozership/probe-mail-latency/maillatency"
 
 // version is set at build time.
-var version = "dev"
+var version = "dev" //nolint:unused // set by -X main.version in .goreleaser
 
 func main() {
 	maillatency.Serve()
