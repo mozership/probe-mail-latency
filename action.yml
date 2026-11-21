@@ -6,9 +6,9 @@ guard: [allow-host]
 params: [mail_dir, output_dir]
 runs:
   using: binary
-  url: https://github.com/mozership/probe-mail-latency/releases/download/v0.1.1/probe-mail-latency_{os}_{arch}
+  url: https://github.com/mozership/probe-mail-latency/releases/download/v0.1.2/probe-mail-latency_{os}_{arch}
   checksums:
-    darwin_amd64: "30eeac3da5e75c51a3b60d7c18d9d64e4e9dc005ddd82e4473e32f4b86d1f466"
-    darwin_arm64: "9d51bc3b34c3e34fe2c9968be0639325598c15bad06b6b7fc9392973f6a857b1"
-    linux_amd64: "7cbec24cfaf5d6b387b36021b17864ea04db16d70a606e03911302def0bebd8c"
-    linux_arm64: "120936760ce264975b587e38ff5fc4e2e1cde487c1e51b48164c54d44a428998"
+    darwin_amd64: "42bfb4d94f38e0ac660b93bbeb0a3c4bf34fced0bef45655924ad2496f33f068"
+    darwin_arm64: "219696789fd01629bcf748a83f27eed2aee52806c260e4c213335e963252ba75"
+    linux_amd64: "c11c76c1b24e88dcedbbed66cefe5453fd45fed367fc6d2b61c932e23635b02c"
+    linux_arm64: "20797fc5bc60e6fc365db58dd181456f229a792d2d6f17c1ce4cf204a10dc20f"
