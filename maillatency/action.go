@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/mozership/probe/actionrpc"
+	"github.com/mozership/probe/sdk"
 )
 
 type Action struct {
@@ -103,7 +103,7 @@ func writeNewFile(dir, timestamp string, data []byte) (string, error) {
 }
 
 func Serve() {
-	actionrpc.Serve(func(log hclog.Logger) actionrpc.Action {
+	sdk.Serve(func(log hclog.Logger) sdk.Action {
 		return &Action{log: log}
 	})
 }
@@ -117,5 +117,5 @@ func Params() []string {
 // action.yml declares them: allow-host, as it connects to no host. It writes
 // its CSV into output_dir, so it does not keep to read-only.
 func Keeps() []string {
-	return []string{actionrpc.KindAllowHost}
+	return []string{sdk.KindAllowHost}
 }

@@ -6,7 +6,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/mozership/probe/actionref"
+	"github.com/mozership/probe/sdk"
 )
 
 func TestWriteNewFile(t *testing.T) {
@@ -51,7 +51,7 @@ func TestManifestsDeclare(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		m, err := actionref.ParseManifest(data)
+		m, err := sdk.ParseManifest(data)
 		if err != nil {
 			t.Fatalf("%s: %v", name, err)
 		}
